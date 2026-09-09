@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "agentops-evaluation-gate"
+version = "0.1.0"
+description = "Offline-first evaluation and CI release gate for AI agents"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [{name = "Sagar Bagwe"}]
+dependencies = []
+
+[project.optional-dependencies]
+api = [
+  "fastapi>=0.115",
+  "pydantic>=2.8",
+  "uvicorn[standard]>=0.30"
+]
+dev = [
+  "pytest>=8.0",
+  "pytest-cov>=5.0"
+]
+
+[project.scripts]
+agentops-gate = "agentops_gate.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+addopts = "-ra"
